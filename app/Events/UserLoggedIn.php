@@ -11,6 +11,7 @@ class UserLoggedIn
     use Dispatchable, SerializesModels;
 
     public int $uid;
+
     public Carbon $datetime;
 
     /**

@@ -10,11 +10,8 @@ use Illuminate\Support\Collection;
 
 class TodoListRepository implements TodoListRepositoryInterface
 {
-
     /**
      * Create a new query with user ownership protection.
-     * @param int $userId
-     * @return Builder
      */
     private function newQueryWithVisibility(int $userId): Builder
     {
@@ -51,6 +48,7 @@ class TodoListRepository implements TodoListRepositoryInterface
         $list->fill($data);
         $list->save();
         $list->users()->attach($userId);
+
         return $list;
     }
 
@@ -61,6 +59,7 @@ class TodoListRepository implements TodoListRepositoryInterface
             ->firstOrFail();
         $list->fill($data);
         $list->save();
+
         return $list;
     }
 

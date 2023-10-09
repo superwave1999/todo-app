@@ -13,7 +13,8 @@ class TodoListService implements TodoListServiceInterface
     public function __construct(
         private readonly TodoListRepositoryInterface $repository,
         private readonly UserRepositoryInterface $userRepository
-    ) {}
+    ) {
+    }
 
     public function getUserLists(int $userId): Collection
     {
