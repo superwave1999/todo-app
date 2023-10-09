@@ -6,7 +6,7 @@ use App\Models\TodoList;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TodoListDetailResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +19,7 @@ class TodoListDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'items' => $this->items
+            'email' => $this->email
         ];
-        // Here we usually want to include extra fields
     }
 }
