@@ -18,11 +18,11 @@ class TodoList extends Model
     protected $fillable = [
         'name',
         'last_modified_user_id',
-        'items'
+        'items',
     ];
 
     protected $casts = [
-        'items' => 'array'
+        'items' => 'array',
     ];
 
     public function users(): BelongsToMany

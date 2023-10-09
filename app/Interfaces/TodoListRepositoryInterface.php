@@ -20,5 +20,4 @@ interface TodoListRepositoryInterface
     public function updateUserList(int $userId, int $listId, array $data): Builder|TodoList;
 
     public function addUserToList(int $userId, int $listId, User $targetUser);
-
 }

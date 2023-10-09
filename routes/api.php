@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TodoListController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 //TODO: Fix this.
 //Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('list', TodoListController::class);
-    Route::post('list/complete/{id}', [TodoListController::class, 'markComplete']);
-    Route::post('list/share/{id}', [TodoListController::class, 'shareWithUser']);
+Route::apiResource('list', TodoListController::class);
+Route::post('list/complete/{id}', [TodoListController::class, 'markComplete']);
+Route::post('list/share/{id}', [TodoListController::class, 'shareWithUser']);
 //});

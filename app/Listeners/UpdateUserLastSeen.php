@@ -13,7 +13,8 @@ class UpdateUserLastSeen implements ShouldQueue
      */
     public function __construct(
         private readonly UserRepositoryInterface $userRepository
-    ) {}
+    ) {
+    }
 
     /**
      * Handle the event.

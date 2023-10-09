@@ -23,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserLoggedIn::class => [
             UpdateUserLastSeen::class,
-        ]
+        ],
     ];
 
     /**

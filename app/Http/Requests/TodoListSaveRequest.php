@@ -26,7 +26,7 @@ class TodoListSaveRequest extends FormRequest
             'name' => '',
             'items' => 'required|array',
             'items.*.isComplete' => 'boolean',
-            'items.*.text' => 'string'
+            'items.*.text' => 'string',
         ];
     }
 }

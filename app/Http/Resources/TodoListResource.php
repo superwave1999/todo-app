@@ -19,7 +19,7 @@ class TodoListResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'items' => $this->items
+            'items' => $this->items,
         ];
     }
 }
