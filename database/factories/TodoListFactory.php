@@ -1,0 +1,28 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TodoList>
+ */
+class TodoListFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $json = [];
+        foreach(range(1,3) as $i) {
+            $json[] = ['isComplete' => fake()->boolean, 'text' => fake()->sentence(3, false)];
+        }
+        return [
+            'name' => fake()->sentence(3, false),
+            'items' => $json
+        ];
+    }
+}

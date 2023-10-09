@@ -14,4 +14,9 @@ class UserRepository implements UserRepositoryInterface
         // I use query() to provide IDE completion
         return User::query()->whereKey($userId)->update(['last_logged_in_at' => $datetime]);
     }
+
+    public function getUserByEmail(string $email): User
+    {
+        return User::query()->where('email', '=', $email)->first();
+    }
 }
