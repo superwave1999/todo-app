@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\TodoList;
-use App\Models\TodoListItem;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,9 +28,6 @@ class DatabaseSeeder extends Seeder
         ]));
         $users->each(function (User $user) {
             $todo = TodoList::factory(4)->create();
-            $todo->each(function (TodoList $list) {
-                TodoListItem::factory(3)->create(['todo_list_id' => $list->id]);
-            });
             $user->todoLists()->saveManyQuietly($todo);
         });
     }

@@ -16,8 +16,13 @@ class TodoListFactory extends Factory
      */
     public function definition(): array
     {
+        $json = [];
+        foreach(range(1,3) as $i) {
+            $json[] = ['isComplete' => fake()->boolean, 'text' => fake()->sentence(3, false)];
+        }
         return [
             'name' => fake()->sentence(3, false),
+            'items' => $json
         ];
     }
 }

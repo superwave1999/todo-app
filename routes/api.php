@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->group(function () {
+//TODO: Fix this.
+//Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('list', TodoListController::class);
-});
+    Route::post('list/complete/{id}', [TodoListController::class, 'markComplete']);
+    Route::post('list/share/{id}', [TodoListController::class, 'shareWithUser']);
+//});

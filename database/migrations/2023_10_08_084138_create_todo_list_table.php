@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->unsignedBigInteger('last_modified_user_id')->nullable();
             $table->foreign('last_modified_user_id')->references('id')->on('users')->onDelete('set null');
+            $table->json('items');
             $table->timestamps();
         });
     }
