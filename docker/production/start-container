@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd /var/www/html
+
+php artisan storage:link
+php artisan optimize
+
+if [ $RUN_MIGRATIONS -gt 0 ]; then
+    php artisan migrate --force
+fi
+
+if [ $MODE_HTTP -gt 0 ]; then
+    cat /var/www/html/docker/production/supervisor/supervisord-http.conf >> /etc/supervisor/conf.d/supervisord.conf
+fi
+
+if [ $MODE_QUEUE -gt 0 ]; then
+    cat /var/www/html/docker/production/supervisor/supervisord-queue.conf >> /etc/supervisor/conf.d/supervisord.conf
+fi
+
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

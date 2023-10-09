@@ -1,0 +1,46 @@
+name: Test and formatting of PRs
+
+on:
+  pull_request:
+    branches: [ "dev" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_USER: sail
+          MARIADB_PASSWORD: password
+          MARIADB_ROOT_PASSWORD: password
+          MARIADB_DATABASE: sail
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - uses: actions/checkout@v3
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+      - name: Optimize
+        run: php artisan optimize
+      - name: Migrate
+        run: php artisan migrate --force
+      - name: Seed
+        run: php artisan db:seed
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: php artisan test
+      - name: Check if code is formatted
+        run: composer check-style
