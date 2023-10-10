@@ -22,7 +22,7 @@ class Lift {
 
 // Setup section
 $maxFloors = 30;
-$numLifts = 6;
+$numLifts = rand(1, 6);
 $maxLiftSize = 10;
 $currentFloor = rand(0, $maxFloors);
 $lifts = [];
@@ -32,7 +32,7 @@ echo('Lift Simulator 2023' . PHP_EOL);
 echo(" === The building has $maxFloors numbered floors (+ ground floor)" . PHP_EOL);
 echo(" === There are $numLifts lifts in the building" . PHP_EOL);
 
-foreach (range(1, rand(1, $numLifts)) as $numLift) {
+foreach (range(1, $numLifts) as $numLift) {
     $liftSize = rand(4, $maxLiftSize);
     $occupancy = rand(0, $maxLiftSize);
     $liftFloor = rand(0, $maxFloors);
